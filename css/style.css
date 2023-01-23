@@ -1,0 +1,259 @@
+/*VARIÁVEIS DE COR E PAPEL DE PAREDE COM MESMO NOME SÃO PARA A TROCA DE TEMA "LIGHT" E "DARK" PELA ADIÇÃO E REMOÇÃO DA CLASSE "light". 
+  HAVERÁ APENAS SOBREESCRITA (TROCA), SEM A NECESSIDADE DE CRIAR O LIGHT MODE DO ZERO
+*/
+
+/*Resetando o css*/
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+/*---------------------------DARK MODE----------------------------*/
+:root{
+    font-family: 'Work Sans', sans-serif;
+
+    --bg-url: url(../assets/bg_darkMobile.jpg);
+    --bg-switch-btn: url(../assets/moonStars.svg);
+    
+    --text-color: #F2F2F2;
+    --red-color: #CF0A0A;
+
+    --stroke-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-color-hover: rgba(0, 0, 0, 0.2);
+    --highlight-color: rgba(255, 255, 255, 0.2);
+}
+
+/*---------------------------LIGHT MODE----------------------------*/
+.light{
+    --bg-url: url(../assets/bg_lightMobile.jpg);
+    --bg-switch-btn: url(../assets/sun.svg);
+
+    --text-color: #000000;
+    --stroke-color: rgba(0, 0, 0, 0.5);
+    --surface-color: rgba(0, 0, 0, 0.05);
+    --surface-color-hover: rgba(0, 0, 0, 0.02); 
+    --highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+body{
+    /*background-image: url(../assets/bg_darkMobile.jpg);*/
+    background: var(--bg-url);
+    
+    background-repeat: no-repeat;
+    background-position: center top; /*eixo x e y*/
+    background-size: cover; /*Cobrir todo o body*/
+    
+    color: var(--text-color);
+
+    height: 100vh;
+}
+
+#container{
+    /*Tamanho e centralização da caixa*/
+    width: 100%;
+    max-width: 588px;
+    margin: auto;
+    padding: 24px;
+}
+
+/*--------------Apresentação do usuário--------------*/
+#profile{
+    padding: 1rem;
+
+    /*Centralizar textos e imagem*/
+    text-align: center;
+}
+
+#imgProfile{
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
+
+    margin-bottom: 0.5rem;
+}
+
+#profile h3{
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+#switch{
+    width: 3rem;
+    margin: auto;
+
+    /*Vai relativizar os elementos absolutos*/
+    position: relative;
+}
+
+#switch button{
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid var(--stroke-color);
+    border-radius: 50%;
+    background: white var(--bg-switch-btn) no-repeat center;
+
+    /*Posicionar ao centro dp eixo Y*/
+    position: absolute;
+    left: 0;
+    transform: translateY(-50%); /*Empurra para cima o elemento*/
+    top: 50%; /*Puxa para baixo o elemento*/
+    z-index: 1;
+
+    animation: lightMode 0.4s forwards;
+}
+
+#switch button:hover{
+    outline: 0.5rem solid var(--highlight-color);
+}
+
+/*Realizar efeito plu - Troca de lugar*/
+.light #switch button{
+    animation: darkMode 0.4s;
+}
+
+#switch span{
+    display: block;
+
+    width: 3rem;
+    height: 1rem;
+    border-radius: 1000px;
+    border: 1px solid var(--stroke-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    margin-bottom: 2rem;
+}
+
+/*--------------Links dos projetos--------------*/
+#userLinks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    /*Centralizar textos e imagem*/
+    text-align: center;
+
+    max-width: 400px;
+    margin: auto;
+
+}
+
+#userLinks li{
+    border: 1px solid var(--stroke-color);
+    border-radius: 0.5rem;
+
+    background: var(--surface-color);
+}
+
+#userLinks li:hover{
+    background-color: var(--dark-color);
+}
+
+#userLinks li a{
+    color: var(--white-color);
+    
+    padding: 1rem 2rem;
+
+    /*Centralização eixo X e Y*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*--------------Links das redes sociais--------------*/
+#socialLinks{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    padding: 1.5rem;
+}
+
+#socialLinks svg{
+    color: var(--text-color);
+}
+
+#socialLinks a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem;
+    
+    border-radius: 50%;
+}
+
+#socialLinks a:hover{
+    background: var(--highlight-color);
+}
+
+/*--------------Rodapé--------------*/
+footer{
+    /*Centralização eixo X e Y*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem 0;
+}
+
+/*Alinhar o texto com o svg - linha*/
+footer p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/*Centralizar o svg no eixo do texto - eixo*/
+footer span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer svg{
+    color: var(--red-color);
+}
+
+/*--------------Media Queries--------------*/
+@media (min-width: 700px){
+    :root{
+        --bg-url: url(../assets/bg_darkDesktop.jpg);
+    }
+
+    .light{
+        --bg-url: url(../assets/bg_lightDesktop.jpg);
+    }
+}
+
+@keyframes lightMode{
+    from{
+        left: 0;
+    }
+    to{
+        left: 50%;
+    }
+}
+
+@keyframes darkMode{
+    from{
+        left: 50%;
+    }
+    to{
+        left: 0;
+    }
+}
